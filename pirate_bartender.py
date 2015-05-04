@@ -37,7 +37,9 @@ def drink_questions():
     return drink_preferences
 
 def drink_mixer(my_dict):
-    """this question makes your drink"""
+    """
+    This function mixes your drink.
+    """
     special_drink = []
     for x, y in my_dict.items():
         if y==True:
@@ -45,10 +47,16 @@ def drink_mixer(my_dict):
     return special_drink
 
 def drink_name():
+    """
+    This function names your drinks.
+    """
     special_drink =  random.choice(adjectives) + " " + random.choice(nouns)
     print("I like to call it {}:".format(str(special_drink)))
 
 def drink_creator():
+    """
+    This function call on two functions, drink_questions and drink_mixer, to create a drink.
+    """
     a_dict = drink_questions()
     drink = drink_mixer(a_dict)
     return drink
@@ -56,8 +64,8 @@ def drink_creator():
 def drink_checker():
     """
     This checker asks your name to see if you have ordered a drink before.
-    If you have ordered a drink before, it gives you the same drink.
-    Else it creates a new drink for you.
+    If you have, it will ask if you want your usual or a new drink.
+    If you are a new customer it creates a new drink for you.
     """
     matey = raw_input("What is your name?  ")
     if matey in customers:
@@ -77,19 +85,8 @@ def drink_checker():
         print("Welcome newbie, {}!  Here's yer drink!".format(matey))
         drink_name()
         print(', '.join(b_drink))
-        
-def more_drinks():
-    """
-    If you want another drink it will give you another drink, either the same or random???
-    This will also check whether you created a "non-drink" with all false preferences.
-    It will also give the drink a name if appropriate.
-    And reduce the supplies if appropriate.
-    """
-    pass
-
 
 if __name__ == '__main__':
-    #print(customers)
     while True:
         drinker = raw_input("Would you like a drink? ")
         if drinker=='y' or drinker=='yes':
@@ -97,5 +94,3 @@ if __name__ == '__main__':
         else:
             print("Pleasure servin' ya, hope to see ya round these parts again soon!")
             break
-    #print(customers)
-    
