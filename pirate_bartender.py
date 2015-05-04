@@ -19,12 +19,15 @@ ingredients = {
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"]
 }
 
-drink_preferences = {}
-special_drink = []
+adjectives = ['Salty', 'Fluffy', 'Sea Sick', 'Mad', 'Angry', 'Crazy', 'Electric']
+
+nouns = ['Sea Dog', 'Chinchilla', 'Walrus', 'Shark', 'Eel', 'Whale', 'Jellyfish']
+
 customers = {}
 
 def drink_questions():
     """this function asks questions to figure out your drink"""
+    drink_preferences = {}
     for key, value in questions.items():
         x =raw_input("{}  ".format(value))
         if x=="y" or x=="yes":
@@ -33,39 +36,66 @@ def drink_questions():
             drink_preferences[key] = False
     return drink_preferences
 
-def drink_maker():
+def drink_mixer(my_dict):
     """this question makes your drink"""
-    for x, y in drink_preferences.items():
+    special_drink = []
+    for x, y in my_dict.items():
         if y==True:
             special_drink.append(random.choice(ingredients[x]))
     return special_drink
 
+def drink_name():
+    special_drink =  random.choice(adjectives) + " " + random.choice(nouns)
+    print("I like to call it {}:".format(str(special_drink)))
+
+def drink_creator():
+    a_dict = drink_questions()
+    drink = drink_mixer(a_dict)
+    return drink
+    
 def drink_checker():
     """
     This checker asks your name to see if you have ordered a drink before.
     If you have ordered a drink before, it gives you the same drink.
     Else it creates a new drink for you.
+    """
+    matey = raw_input("What is your name?  ")
+    if matey in customers:
+        drink = raw_input("Would you like your usual?  ")
+        if drink=="yes" or drink=='y':
+            print("Welcome back {}! Here is your drink, the way you like it!".format(matey))
+            drink_name()
+            print("{}".format(str(customers[matey])))
+        else:
+            a_drink = drink_creator()
+            print("Here's something new for you, {}".format(matey))
+            drink_name()
+            print(', '.join(a_drink))
+    else:
+        b_drink = drink_creator()
+        customers[matey] = b_drink
+        print("Welcome newbie, {}!  Here's yer drink!".format(matey))
+        drink_name()
+        print(', '.join(b_drink))
+        
+def more_drinks():
+    """
     If you want another drink it will give you another drink, either the same or random???
     This will also check whether you created a "non-drink" with all false preferences.
     It will also give the drink a name if appropriate.
     And reduce the supplies if appropriate.
     """
-    matey = raw_input("Hi there matey, what is your name?  ")
-    if matey in customers:
-        print("Welcome back {}! Here is a drink, the way you like it:".format(matey))
-        for x in customers[matey]:
-            print(', '.join(customers[matey]))    
-    else:
-        drink_questions()
-        new_drink = drink_maker()
-        customers[matey] = new_drink
+    pass
+
 
 if __name__ == '__main__':
-    print("Drink Preferences Before:  " + str(drink_preferences))
-    print("Special Drink Before:  " + str(special_drink))
-    print("Customers Before:  " + str(customers))
-    drink_checker()
-    print("Drink Preferences After:  " + str(drink_preferences))
-    print("Special Drink After:  " + str(special_drink))
-    print("Customers After:  " + str(customers))
+    #print(customers)
+    while True:
+        drinker = raw_input("Would you like a drink? ")
+        if drinker=='y' or drinker=='yes':
+            drink_checker()
+        else:
+            print("Pleasure servin' ya, hope to see ya round these parts again soon!")
+            break
+    #print(customers)
     
