@@ -33,22 +33,26 @@ def drink_questions():
         else:
             print("What is that there matey?  I will take that for a no.")
             drink_preferences[key] = False
-    #print(drink_preferences)
-    #return drink_preferences
+    print(drink_preferences)
+    return drink_preferences
 
 def drink_maker():
     """this question makes your drink"""
-    for key, value in drink_preferences.items():
-        if value == True:
-            for mykey in ingredients.keys():
-                if mykey == key:  
-                    z = random.choice(ingredients[mykey].values())
-                    print(z)
-                    special_drink.append(z)
+    if True in drink_preferences.values():
+        for key, value in drink_preferences.items():
+            if value == True:
+                for x, y in ingredients.items():
+                    if key == x:
+                        z = random.choice(ingredients[x])
+                        print(z)
+                        special_drink.append(z)
+        #print("I'm gonna serve you a drink with {}, {}, {}, {}, {}...".format(*special_drink))
+    else:
+        print("Guessin' ye don't want a drink tonight, matey!!")
 
 if __name__ == '__main__':
-    print(special_drink)
+    #print(special_drink)
     drink_questions()
-    print(special_drink)
+    #print(special_drink)
     drink_maker()
-    print(special_drink)
+    #print("I'm gonna serve you a drink with {}, {}, {}, {}, {}...".format(*special_drink))
