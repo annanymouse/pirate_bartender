@@ -21,6 +21,7 @@ ingredients = {
 
 drink_preferences = {}
 special_drink = []
+customers = {}
 
 def drink_questions():
     """this function asks questions to figure out your drink"""
@@ -38,21 +39,30 @@ def drink_questions():
 
 def drink_maker():
     """this question makes your drink"""
-    if True in drink_preferences.values():
-        for key, value in drink_preferences.items():
-            if value == True:
-                for x, y in ingredients.items():
-                    if key == x:
-                        z = random.choice(ingredients[x])
-                        print(z)
-                        special_drink.append(z)
-        #print("I'm gonna serve you a drink with {}, {}, {}, {}, {}...".format(*special_drink))
-    else:
-        print("Guessin' ye don't want a drink tonight, matey!!")
+    for key, value in drink_preferences.items():
+        if not value:
+            continue
+            
+        special_drink.append(random.choice(ingredients[key]))
+    return special_drink
+
+def drink_checker():
+    """
+    This checker asks your name to see if you have ordered a drink before.
+    If you have ordered a drink before, it gives you the same drink.
+    Else it creates a new drink for you.
+    If you want another drink it will give you another drink, either the same or random???
+    This will also check whether you created a "non-drink" with all false preferences.
+    It will also give the drink a name if appropriate.
+    And reduce the supplies if appropriate.
+    """
+    #print ' '.join(['%-2s' % (i,) for i in l])
+    pass
 
 if __name__ == '__main__':
     #print(special_drink)
     drink_questions()
     #print(special_drink)
     drink_maker()
+    print(drink_maker)
     #print("I'm gonna serve you a drink with {}, {}, {}, {}, {}...".format(*special_drink))
