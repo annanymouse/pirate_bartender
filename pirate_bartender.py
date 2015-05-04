@@ -29,7 +29,7 @@ def drink_questions():
     """this function asks questions to figure out your drink"""
     drink_preferences = {}
     for key, value in questions.items():
-        x =raw_input("{}  ".format(value))
+        x = raw_input("{}  ".format(value))
         if x=="y" or x=="yes":
             drink_preferences[key] = True
         else:
@@ -67,9 +67,9 @@ def drink_checker():
     If you have, it will ask if you want your usual or a new drink.
     If you are a new customer it creates a new drink for you.
     """
-    matey = raw_input("What is your name?  ")
+    matey = raw_input("What is your name?  ").lower()
     if matey in customers:
-        drink = raw_input("Would you like your usual?  ")
+        drink = raw_input("Would you like your usual?  ").lower()
         if drink=="yes" or drink=='y':
             print("Welcome back {}! Here is your drink, the way you like it!".format(matey))
             drink_name()
@@ -88,7 +88,7 @@ def drink_checker():
 
 if __name__ == '__main__':
     while True:
-        drinker = raw_input("Would you like a drink? ")
+        drinker = raw_input("Would you like a drink? ").lower()
         if drinker=='y' or drinker=='yes':
             drink_checker()
         else:
