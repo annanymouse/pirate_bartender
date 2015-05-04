@@ -29,21 +29,15 @@ def drink_questions():
         x =raw_input("{}  ".format(value))
         if x=="y" or x=="yes":
             drink_preferences[key] = True
-        elif x=="n" or x=="no":
-            drink_preferences[key] = False
         else:
-            print("What is that there matey?  I will take that for a no.")
             drink_preferences[key] = False
-    print(drink_preferences)
     return drink_preferences
 
 def drink_maker():
     """this question makes your drink"""
-    for key, value in drink_preferences.items():
-        if not value:
-            continue
-            
-        special_drink.append(random.choice(ingredients[key]))
+    for x, y in drink_preferences.items():
+        if y==True:
+            special_drink.append(random.choice(ingredients[x]))
     return special_drink
 
 def drink_checker():
@@ -56,13 +50,22 @@ def drink_checker():
     It will also give the drink a name if appropriate.
     And reduce the supplies if appropriate.
     """
-    #print ' '.join(['%-2s' % (i,) for i in l])
-    pass
+    matey = raw_input("Hi there matey, what is your name?  ")
+    if matey in customers:
+        print("Welcome back {}! Here is a drink, the way you like it:".format(matey))
+        for x in customers[matey]:
+            print(', '.join(customers[matey]))    
+    else:
+        drink_questions()
+        new_drink = drink_maker()
+        customers[matey] = new_drink
 
 if __name__ == '__main__':
-    #print(special_drink)
-    drink_questions()
-    #print(special_drink)
-    drink_maker()
-    print(drink_maker)
-    #print("I'm gonna serve you a drink with {}, {}, {}, {}, {}...".format(*special_drink))
+    print("Drink Preferences Before:  " + str(drink_preferences))
+    print("Special Drink Before:  " + str(special_drink))
+    print("Customers Before:  " + str(customers))
+    drink_checker()
+    print("Drink Preferences After:  " + str(drink_preferences))
+    print("Special Drink After:  " + str(special_drink))
+    print("Customers After:  " + str(customers))
+    
