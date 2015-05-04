@@ -26,7 +26,9 @@ nouns = ['Sea Dog', 'Chinchilla', 'Walrus', 'Shark', 'Eel', 'Whale', 'Jellyfish'
 customers = {}
 
 def drink_questions():
-    """this function asks questions to figure out your drink"""
+    """
+    This function asks questions to figure out your drink.
+    """
     drink_preferences = {}
     for key, value in questions.items():
         x = raw_input("{}  ".format(value))
