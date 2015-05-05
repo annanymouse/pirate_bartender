@@ -19,6 +19,13 @@ ingredients = {
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"]
 }
 
+inventory = {"glug of rum": 10, "slug of whisky": 1, "splash of gin": 15,
+             "olive on a stick": 22, "salt-dusted rim": 5, "rasher of bacon": 1,
+             "shake of bitters": 1, "splash of tonic": 12, "twist of lemon peel": 6,
+             "sugar cube": 3, "spoonful of honey": 1, "spash of cola": 18,
+             "slice of orange": 17, "dash of cassis": 20, "cherry on top": 1
+}
+
 adjectives = ['Salty', 'Fluffy', 'Sea Sick', 'Mad', 'Angry', 'Crazy', 'Electric']
 
 nouns = ['Sea Dog', 'Chinchilla', 'Walrus', 'Shark', 'Eel', 'Whale', 'Jellyfish']
@@ -45,7 +52,9 @@ def drink_mixer(my_dict):
     special_drink = []
     for x, y in my_dict.items():
         if y==True:
-            special_drink.append(random.choice(ingredients[x]))
+            z = random.choice(ingredients[x])
+            special_drink.append(z)
+            inventory[z] -= 1
     return special_drink
 
 def drink_name():
@@ -96,3 +105,5 @@ if __name__ == '__main__':
         else:
             print("Pleasure servin' ya, hope to see ya round these parts again soon!")
             break
+    for x, y in inventory.items():
+        print("{}:  {}".format(x, y))
