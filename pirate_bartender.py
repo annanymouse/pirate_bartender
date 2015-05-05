@@ -19,11 +19,11 @@ ingredients = {
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"]
 }
 
-inventory = {"glug of rum": 10, "slug of whisky": 1, "splash of gin": 15,
-             "olive on a stick": 22, "salt-dusted rim": 5, "rasher of bacon": 1,
-             "shake of bitters": 1, "splash of tonic": 12, "twist of lemon peel": 6,
-             "sugar cube": 3, "spoonful of honey": 1, "spash of cola": 18,
-             "slice of orange": 17, "dash of cassis": 20, "cherry on top": 1
+inventory = {"glug of rum": 10, "slug of whisky": 6, "splash of gin": 15,
+             "olive on a stick": 22, "salt-dusted rim": 5, "rasher of bacon": 6,
+             "shake of bitters": 6, "splash of tonic": 12, "twist of lemon peel": 6,
+             "sugar cube": 3, "spoonful of honey": 6, "spash of cola": 18,
+             "slice of orange": 17, "dash of cassis": 20, "cherry on top": 6
 }
 
 adjectives = ['Salty', 'Fluffy', 'Sea Sick', 'Mad', 'Angry', 'Crazy', 'Electric']
@@ -96,6 +96,12 @@ def drink_checker():
         print("Welcome newbie, {}!  Here's yer drink!".format(matey))
         drink_name()
         print(', '.join(b_drink))
+        
+def stock_checker():
+    for x, y in inventory.items():
+        if y < 5:
+            z = int(raw_input("Your stock of {} is low.  Please enter quantity to add to inventory:  ".format(x)))
+            inventory[x] += z
 
 if __name__ == '__main__':
     while True:
@@ -105,5 +111,6 @@ if __name__ == '__main__':
         else:
             print("Pleasure servin' ya, hope to see ya round these parts again soon!")
             break
+    stock_checker()
     for x, y in inventory.items():
         print("{}:  {}".format(x, y))
